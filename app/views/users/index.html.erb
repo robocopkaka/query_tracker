@@ -1,0 +1,7 @@
+<h1>Welcome to Kachi's Query Tracker</h1>
+<% if !user_signed_in? %>
+	<%= link_to "Log in here", new_user_session_path %>
+<% else %>
+	<p>Hi, <%= current_user.email %></p>
+	<p><%= link_to "Log out here", destroy_user_session_path, method: :delete %></p>
+<% end %>
