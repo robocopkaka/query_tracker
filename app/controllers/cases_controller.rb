@@ -1,8 +1,11 @@
 class CasesController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user!
   before_action :admin_only, only: [:assign]
-  before_action :find_case, only: [:edit, :update, :assign]
+  before_action :find_case, only: [:edit, :update, :assign, :show]
+
+  # retrieve all cases from the database
   def index
+    @cases = Case.all
   end
 
   def new
@@ -35,16 +38,26 @@ class CasesController < ApplicationController
 	end
   end
 
+  def show
+    if current_user.is_admin?
+      #render a partial that allows the admin assign tasks to any support staff
+    end
+    # Add an if - else block that renders different stuff based on the user's role
+    # A regular user shouldn't be allowed to edit the resolution note
+    # Add a form field for resolution note that can only be seen by support staff
+  end
+
   #assign a case to a support staff
   def assign
-
+    @case.update_attributes()
   end
 
   private
   def case_params
-  	params.require(:cases).permit(:description, :resolution_note)
+  	params.require(:case).permit(:description, :resolution_note) #use singular for the model name
   end
 
+  #retrieve the case from the database and the user who created it
   def find_case
   	@case = Case.find_by_id(params[:id])
   end

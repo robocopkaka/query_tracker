@@ -1,2 +1,11 @@
-<h1>Cases#index</h1>
-<p>Find me in app/views/cases/index.html.erb</p>
+<h1>All cases</h1>
+<ul class="list-group">
+	<li class="list-group-item">
+		<% @cases.each do |complaint| %>
+			<p><%= link_to "Case ID #{complaint.id}", case_path(complaint)%></p>
+			<p>Case Description: <%= complaint.description %></p>
+			<p> Created_by: <%= complaint.user.name %></p> <!-- complaint.user goes directly to the User model and retrieves
+			                                                    the attribute that follows -->
+		<% end %>
+	</li>
+</ul>

@@ -10,40 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403173511) do
+ActiveRecord::Schema.define(version: 20170404173907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cases", force: :cascade do |t|
-    t.text     "description"
-    t.integer  "assigned_to"
-    t.string   "resolution_note"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "user_id"
-    t.index ["user_id"], name: "index_cases_on_user_id", using: :btree
-  end
+# Could not dump table "cases" because of following StandardError
+#   Unknown type 'status' for column 'status'
 
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "phone_number"
-    t.boolean  "is_admin"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  end
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'role' for column 'role'
 
   add_foreign_key "cases", "users"
 end

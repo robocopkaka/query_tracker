@@ -1,2 +1,7 @@
-<h1>Cases#edit</h1>
-<p>Find me in app/views/cases/edit.html.erb</p>
+<p>Edit Case Number <%= @case.id %></p>
+<%= form_for @case do |f| %>
+	<%= f.label :description %>
+	<%= f.text_field :description %>
+
+	<%= f.submit "Log your complaint" %>
+<% %>
