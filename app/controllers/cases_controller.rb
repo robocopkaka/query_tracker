@@ -49,7 +49,6 @@ class CasesController < ApplicationController
 
   #assign a case to a support staff
   def assign
-    @case.update_attributes()
   end
 
   private
