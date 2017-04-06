@@ -1,0 +1,4 @@
+<%= form_tag(controller: 'cases', action: 'assign', remote: true, method: :put) do%>
+	<%= select_tag(:support_id, options_for_select(@users), class: 'form-control') %>
+	<%= button_to "Assign", class: 'btn btn-primary' %>
+<% end %>

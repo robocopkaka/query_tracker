@@ -29,13 +29,11 @@ class CasesController < ApplicationController
   end
 
   def update
-  	respond_to do |format|
 			if @case.update_attributes(case_params)
 				redirect_to @case
 			else
 				render 'edit'
 			end
-	end
   end
 
   def show
@@ -50,18 +48,19 @@ class CasesController < ApplicationController
 
   #assign a case to a support staff
   def assign
-    raise params.inspect
-    # @case = Case.find_by_id(params[:id])
-    # @case.update_attributes(assigned_to: params[:support_id])
+    # raise params.inspect
+    @case = Case.find_by_id(params[:id])
+    @case.update_attributes(assigned_to: params[:support_id])
 
-    # respond_to do |format|
-    #   format.html {redirect_to @case}
-    # end
+    respond_to do |format|
+      #format.js{}
+      format.html {redirect_to @case}
+    end
   end
 
   private
   def case_params
-  	params.require(:case).permit(:description, :resolution_note) #use singular for the model name
+  	params.require(:case).permit(:description, :resolution_note, :status) #use singular for the model name
   end
 
   #retrieve the case from the database and the user who created it

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get 'users/edit'
 
-  get 'cases/assign'
+  post 'cases/:id' => 'cases#assign', as: 'assign'
 
   root 'users#index'
 

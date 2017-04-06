@@ -1,0 +1,18 @@
+<button id="button" onclick="showhide()" class="btn btn-primary">Close Case</button>
+<div id= "close_case" style="display:none;">
+<%= form_for(@case, method: :put) do |f|%>
+	<%= f.label :resolution_note %>
+	<%= f.text_area :resolution_note, class: 'form-control' %>
+	<%= f.select :status, Case.statuses.keys, class: 'btn btn-primary' %>
+	<br>
+	<%= f.submit "Close Case", class: 'btn btn-primary'  %>
+
+<% end %>
+</div>
+
+<!--  Make this onChange and let it have a message follow it-->
+<% if !current_user.is_admin? %>
+	<h3>Assign case to a different staff</h3>
+	<br>
+	<%= render 'cases/assign' %> 
+<% end %>

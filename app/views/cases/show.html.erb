@@ -2,7 +2,24 @@
 
 <p> Description: <%= @case.description %></p>
 <p>Created by: <%= @case.user.name %></p>
-<%= form_tag("/assign", remote: true) do %>
-	<%= select_tag(:support_id, options_for_select(@users), class: 'form-control') %>
-	<%= submit_tag "Assign", class: 'btn btn-primary' %>
+<p>Created on: <%= @case.created_at.to_date %></p>
+<p>Assigned to: <%= User.find(@case.assigned_to).name %></p>
+<p>Status: <%= @case.status %></p>
+<% if current_user.support? %>
+	<%= render 'cases/support_show' %>
 <% end %>
+<% if current_user.is_admin? %>
+	<br>
+	<%= render 'cases/assign' %> 
+<% end %>
+
+<script>
+function myFunction() {
+    var x = document.getElementById('close_case');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+</script>
