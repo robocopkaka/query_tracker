@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get 'users/edit'
 
+  get 'cases/assign'
+
   root 'users#index'
 
   devise_for :users

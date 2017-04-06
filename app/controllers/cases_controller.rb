@@ -1,6 +1,6 @@
 class CasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_only, only: [:assign]
+  #before_action :admin_only, only: [:assign]
   before_action :find_case, only: [:edit, :update, :assign, :show]
 
   # retrieve all cases from the database
@@ -39,6 +39,7 @@ class CasesController < ApplicationController
   end
 
   def show
+    @users = User.where("role=?", "support").map{|user| [user.name, user.id]}
     if current_user.is_admin?
       #render a partial that allows the admin assign tasks to any support staff
     end
@@ -49,6 +50,13 @@ class CasesController < ApplicationController
 
   #assign a case to a support staff
   def assign
+    raise params.inspect
+    # @case = Case.find_by_id(params[:id])
+    # @case.update_attributes(assigned_to: params[:support_id])
+
+    # respond_to do |format|
+    #   format.html {redirect_to @case}
+    # end
   end
 
   private

@@ -1,11 +1,14 @@
 <h1>All cases</h1>
-<ul class="list-group">
-	<li class="list-group-item">
+<div class="list-group">
 		<% @cases.each do |complaint| %>
-			<p><%= link_to "Case ID #{complaint.id}", case_path(complaint)%></p>
-			<p>Case Description: <%= complaint.description %></p>
-			<p> Created_by: <%= complaint.user.name %></p> <!-- complaint.user goes directly to the User model and retrieves
-			                                                    the attribute that follows -->
+		  <%= link_to case_path(complaint),style:'text-decoration:none' do%>
+		    <div class="list-group-item">
+				<p>Case ID: <%= complaint.id %></p>
+				<p>Case Description: <%= complaint.description %></p>
+				<p> Created_by: <%= complaint.user.name %></p> <!-- complaint.user goes directly to the User model and retrieves
+		                                              the attribute that follows -->
+		        
+		    </div>
+		  <% end %>
 		<% end %>
-	</li>
-</ul>
+</div>

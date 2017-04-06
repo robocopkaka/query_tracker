@@ -41,6 +41,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @cases = @user.cases
+    @open_cases = @user.cases.where("status=?", "open").count
+    @resolved_cases = @user.cases.where("status=?", "closed").count
+    @fixed_cases = @user.cases.where("status=?", "fixed").count
+  end
+
   private
   def user_params
   	params.require(:user).permit(:email, :password, :password_confirmation, :name, :phone_number)

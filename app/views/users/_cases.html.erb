@@ -1,0 +1,13 @@
+<!-- Partial for user cases. Shows the cases a user has opened -->
+<div class = "list-group">
+	<% @cases.each do |complaint| %>
+      <%= link_to case_path(complaint),style:"display: block; text-decoration:none;" do %>
+		<div class="list-group-item">
+			<p>Description: <%= complaint.description %></p>
+			<p>Assigned to: <%= User.find(complaint.assigned_to).name %></p>
+			<p>Date Opened: <%= complaint.created_at.to_date %></p>
+			<p>Status: <%= complaint.status %></p>
+		</div>
+	  <% end %>
+	<% end %>
+</div>
