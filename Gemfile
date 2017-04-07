@@ -41,6 +41,8 @@ gem 'faker'
 # pagination gems
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+#gem for using environment variables
+gem 'figaro'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
