@@ -5,7 +5,7 @@ class CasesController < ApplicationController
 
   # retrieve all cases from the database
   def index
-    @cases = Case.all
+    @cases = Case.all.paginate(:page => params[:page], per_page: 10)
   end
 
   def new

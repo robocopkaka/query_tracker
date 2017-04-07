@@ -1,6 +1,6 @@
-<h1>Welcome to Kachi's Query Tracker</h1>
+<h1 style="text-align: center;">Welcome to Kachi's Query Tracker</h1>
 <% if !user_signed_in? %>
-	<%= link_to "Log in here", new_user_session_path %>
+	<p style="text-align: center; font-size: 20px">You can create cases, see who they're assigned to, and get a mail when it's fixed</p>
 <% else %>
 	<p>Hi, <%= current_user.email %></p>
 	<p><%= link_to "Log out here", destroy_user_session_path, method: :delete %></p>

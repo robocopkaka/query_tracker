@@ -26,3 +26,14 @@ else {
     div.style.display = "block";
 }
  }
+
+ function showhide2()
+ {
+       var div = document.getElementById("reassign_case");
+if (div.style.display !== "none") {
+    div.style.display = "none";
+}
+else {
+    div.style.display = "block";
+}
+ }

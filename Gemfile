@@ -36,7 +36,11 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 #bootstrap gem
 gem 'bootstrap-sass', '~> 3.3.6'
-
+#faker gem for generating dummy data
+gem 'faker'
+# pagination gems
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

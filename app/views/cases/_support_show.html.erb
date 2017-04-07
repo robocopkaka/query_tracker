@@ -1,5 +1,5 @@
 <button id="button" onclick="showhide()" class="btn btn-primary">Close Case</button>
-<div id= "close_case" style="display:none;">
+<div id = "close_case" style="display:none;">
 <%= form_for(@case, method: :put) do |f|%>
 	<%= f.label :resolution_note %>
 	<%= f.text_area :resolution_note, class: 'form-control' %>
@@ -9,6 +9,7 @@
 
 <% end %>
 </div>
+<br/>
 
 <!--  Make this onChange and let it have a message follow it-->
 <% if !current_user.is_admin? %>

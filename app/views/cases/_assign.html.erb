@@ -1,4 +1,7 @@
-<%= form_tag(controller: 'cases', action: 'assign', remote: true, method: :put) do%>
-	<%= select_tag(:support_id, options_for_select(@users), class: 'form-control') %>
-	<%= button_to "Assign", class: 'btn btn-primary' %>
-<% end %>
+<button id="button" onclick="showhide2()" class="btn btn-primary">Reassign Case</button>
+<div id="reassign_case" style="display:none;">
+	<%= form_tag(controller: 'cases', action: 'assign', remote: true, method: :put) do%>
+		<%= select_tag(:support_id, options_for_select(@users), class: 'form-control') %>
+		<%= button_to "Assign", class: 'btn btn-primary' %> <!-- Add a mail method to this button -->
+	<% end %>
+</div>
