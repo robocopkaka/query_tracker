@@ -3,7 +3,7 @@
 		<%= f.label :description %>
 		<%= f.text_area :description, class: 'form-control' %>
 		<%= f.label :category %>
-		<%= f.select(:category, options_for_select(@categories), class: 'form-control') %>
+		<%= f.select(:category_id, options_from_collection_for_select(Category.all, :id, :name), class: 'form-control') %>
 	</div>
 
 	<%= f.submit "Log your complaint", class: 'btn btn-primary' %>

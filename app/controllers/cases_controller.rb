@@ -68,7 +68,7 @@ class CasesController < ApplicationController
 
   private
   def case_params
-  	params.require(:case).permit(:description, :resolution_note, :status, :category) #use singular for the model name
+  	params.require(:case).permit(:description, :resolution_note, :status, :category_id) #use singular for the model name
   end
 
   #retrieve the case from the database and the user who created it
