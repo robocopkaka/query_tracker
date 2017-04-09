@@ -10,6 +10,7 @@ class CasesController < ApplicationController
 
   def new
   	@case = Case.new
+    @categories = ["General", "Miscellaneous"]
   end
 
   def create
@@ -58,9 +59,16 @@ class CasesController < ApplicationController
     end
   end
 
+  def find_by_category
+    if params[:category_id]
+      @category = Category.find_by_id(params[:category_id])
+      @cases = @category.cases.order("created_at DESC").paginate(:page => params[:page], per_page: 10)
+    end
+  end
+
   private
   def case_params
-  	params.require(:case).permit(:description, :resolution_note, :status) #use singular for the model name
+  	params.require(:case).permit(:description, :resolution_note, :status, :category) #use singular for the model name
   end
 
   #retrieve the case from the database and the user who created it

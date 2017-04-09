@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406180930) do
+ActiveRecord::Schema.define(version: 20170408230756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
 # Could not dump table "cases" because of following StandardError
 #   Unknown type 'status' for column 'status'
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 # Could not dump table "users" because of following StandardError
 #   Unknown type 'role' for column 'role'

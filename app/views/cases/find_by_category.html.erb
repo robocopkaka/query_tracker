@@ -1,0 +1,17 @@
+<h1>Find Cases by Category</h1>
+<%= form_tag(find_by_category_path, method: :get) do %>
+	<%= select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :name), class: 'form-control') %>
+	<%= submit_tag "Search" %>
+<% end %>
+
+<br>
+
+<% if @cases.present? %>
+	<h2>Cases under <%= @category.name %> category</h2>
+	<%= render @cases %>
+<% else %>
+	<% if !@category.nil? %> <!-- Without this if block, @category will always evaluate to nil when the page is 
+								loaded, and will throw an error, because it can't find a name attribute for nil-->
+		<p>There are no cases under <%= @category.name %> category </p>
+	<% end %>
+<% end %>

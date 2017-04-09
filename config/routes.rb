@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'categories/new'
+
+  get 'categories/edit'
+
+  get 'find_by_category' => 'cases#find_by_category'
+
   get 'cases/index'
 
   get 'cases/new'
@@ -18,5 +24,6 @@ Rails.application.routes.draw do
   devise_for :users
   resources :cases
   resources :users
+  resources :categories
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

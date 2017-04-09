@@ -1,0 +1,15 @@
+<div class="list-group">
+		<% @cases.each do |complaint| %>
+		  <%= link_to case_path(complaint),style:'text-decoration:none' do%>
+		    <div class="list-group-item">
+				<p>Case ID: <%= complaint.id %></p>
+				<p>Case Description: <%= complaint.description %></p>
+				<p> Created_by: <%= complaint.user.name %></p> <!-- complaint.user goes directly to the User model and retrieves
+		                                              the attribute that follows -->
+		        <p>Category: <%= complaint.category.name %></p>
+		        
+		    </div>
+		  <% end %>
+		<% end %>
+		<%= will_paginate @cases %>
+</div>
