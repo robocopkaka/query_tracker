@@ -3,7 +3,7 @@
 <%= form_for(@case, method: :put) do |f|%>
 	<%= f.label :resolution_note %>
 	<%= f.text_area :resolution_note, class: 'form-control' %>
-	<%= f.select :status, Case.statuses.keys, class: 'btn btn-primary' %>
+	<%= f.select :status, Case.statuses.keys, class: 'btn btn-primary' %> <!-- .statuses.keys retrieves the enum keys for status -->
 	<br>
 	<%= f.submit "Close Case", class: 'btn btn-primary'  %>
 

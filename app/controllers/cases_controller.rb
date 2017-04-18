@@ -1,3 +1,4 @@
+require 'will_paginate/array'
 class CasesController < ApplicationController
   before_action :authenticate_user!
   #before_action :admin_only, only: [:assign]
@@ -5,7 +6,20 @@ class CasesController < ApplicationController
 
   # retrieve all cases from the database
   def index
-    @cases = Case.all.paginate(:page => params[:page], per_page: 10)
+    # retrieves all cases logged for the admin to see
+    if current_user.is_admin?
+      @cases = Case.includes(:user, :category).all.order('id ASC').page(params[:page]).per_page(10)
+    end
+    # retrieves cases for support staff
+    if current_user.role == "support" && !current_user.is_admin?
+      @cases = Case.where("assigned_to=?", current_user.id).paginate(page: params[:page], per_page: 10)
+    end
+
+    # retrieves cases that regular users have opened
+    if current_user.regular?
+      @cases = current_user.cases.paginate(page: params[:page], per_page: 10)
+    end
+
   end
 
   def new
@@ -38,8 +52,10 @@ class CasesController < ApplicationController
   end
 
   def show
+    # @users will be passed into the form in the assign partial, and allows the admin or support staff reassign cases
+    # to other users
     @users = User.where("role=?", "support").map{|user| [user.name, user.id]}
-    if current_user.is_admin?
+    if current_user.is_admin? 
       #render a partial that allows the admin assign tasks to any support staff
     end
     # Add an if - else block that renders different stuff based on the user's role
@@ -50,7 +66,6 @@ class CasesController < ApplicationController
   #assign a case to a support staff
   def assign
     # raise params.inspect
-    @case = Case.find_by_id(params[:id])
     @case.update_attributes(assigned_to: params[:support_id])
 
     respond_to do |format|
