@@ -5,12 +5,19 @@
 <p>Created on: <%= @case.created_at.to_date %></p>
 <p>Assigned to: <%= User.find(@case.assigned_to).name %></p>
 <p>Status: <%= @case.status %></p>
+<!-- Since I generally assume that an admin is a support staff, duplicating the support_show partial is
+ unnecessary. Both admin and any other support staff can close cases -->
 <% if current_user.support? %>
 	<%= render 'cases/support_show' %>
 <% end %>
+<!-- only an admin should be able to reassign cases -->
 <% if current_user.is_admin? %>
 	<br>
 	<%= render 'cases/assign' %> 
+<% end %>
+
+<% if current_user.id == @case.user_id %>
+	<%= render 'cases/reopen' %>
 <% end %>
 
 <script type="text/javascript">

@@ -1,5 +1,5 @@
 <button id="button" onclick="showhide()" class="btn btn-primary">Close Case</button>
-<div id = "close_case" style="display:none;">
+<div id = "reopen_case" style="display:none;">
 <!-- the form_for doesn't specify the action to be used, and doesn't need one, as it uses the update action
  since we specified the method as put, and tied it to the @case object -->
 <%= form_for(@case, method: :put) do |f|%>
@@ -7,15 +7,8 @@
 	<%= f.text_area :resolution_note, class: 'form-control' %>
 	<%= f.select :status, Case.statuses.keys, class: 'btn btn-primary' %> <!-- .statuses.keys retrieves the enum keys for status -->
 	<br>
-	<%= f.submit "Close Case", class: 'btn btn-primary'  %>
+	<%= f.submit "Reopen Case", class: 'btn btn-primary'  %>
 
 <% end %>
 </div>
 <br/>
-
-<!--  Make this onChange and let it have a message follow it-->
-<% if !current_user.is_admin? %>
-	<h3>Assign case to a different staff</h3>
-	<br>
-	<%= render 'cases/assign' %> 
-<% end %>

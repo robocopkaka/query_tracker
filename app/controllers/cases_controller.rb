@@ -31,6 +31,7 @@ class CasesController < ApplicationController
   	@case = current_user.cases.new(case_params)
   	respond_to do |format|
 		if @case.save
+      CaseMailer.logged_case(@case).deliver_now
 			format.html{redirect_to @case}
 			format.json{render :show, status: :created, location: @case}
 		else

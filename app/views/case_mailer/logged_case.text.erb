@@ -1,0 +1,4 @@
+Case Number <%= @complaint.id %> was just logged
+===========================================
+The case was created by <%= @complaint.user.name %>
+You can view the case by clicking <%= link_to "here", case_url(@complaint) %>
