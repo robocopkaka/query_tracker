@@ -19,6 +19,12 @@ Rails.application.routes.draw do
 
   post 'cases/:id' => 'cases#assign', as: 'assign'
 
+  post 'cases/:id' => 'cases#close', as: 'close'
+
+  post 'cases/:id' => 'cases#reopen', as: 'reopen'
+
+  post 'cases/:id' => 'cases#resolve', as: 'resolve'
+
   root 'users#index'
 
   devise_for :users

@@ -10,13 +10,8 @@
 <% if current_user.support? %>
 	<%= render 'cases/support_show' %>
 <% end %>
-<!-- only an admin should be able to reassign cases -->
-<% if current_user.is_admin? %>
-	<br>
-	<%= render 'cases/assign' %> 
-<% end %>
 
-<% if current_user.id == @case.user_id %>
+<% if current_user.id == @case.user_id && (@case.fixed? || @case.closed?) %>
 	<%= render 'cases/reopen' %>
 <% end %>
 
