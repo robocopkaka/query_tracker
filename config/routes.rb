@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   post 'cases/:id' => 'cases#reopen', as: 'reopen'
 
-  post 'cases/:id' => 'cases#resolve', as: 'resolve'
+  post 'resolve/:id' => 'cases#resolve'
 
   root 'users#index'
 

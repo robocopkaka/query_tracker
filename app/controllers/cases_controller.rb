@@ -84,7 +84,8 @@ class CasesController < ApplicationController
 
   # closes the case
   def close
-    @case.update_attributes(status: 'closed')
+    @case.closed!
+    save
     respond_to do |format|
       #format.js{}
       format.html {redirect_to @case}
@@ -94,7 +95,8 @@ class CasesController < ApplicationController
 
   #reopens the case
   def reopen
-    @case.update_attributes(status: 'open', assigned_to: 1)
+    @case.open!
+    save
     redirect_to @case
     # add a mailer function
   end
