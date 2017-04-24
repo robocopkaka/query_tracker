@@ -17,15 +17,9 @@ Rails.application.routes.draw do
 
   get 'users/edit'
 
-  post 'cases/:id' => 'cases#assign', as: 'assign'
-
-  post 'cases/:id' => 'cases#close', as: 'close'
-
-  post 'cases/:id' => 'cases#reopen', as: 'reopen'
-
-  post 'resolve/:id' => 'cases#resolve'
-
   root 'users#index'
+
+  post 'close' => 'cases#close'
 
   devise_for :users
   resources :cases

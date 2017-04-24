@@ -2,15 +2,17 @@
 <div id = "reopen_case" style="display:none;">
 <!-- the form_for doesn't specify the action to be used, and doesn't need one, as it uses the update action
  since we specified the method as put, and tied it to the @case object -->
-<%= form_tag(controller: 'cases', action: 'reopen', method: :put) do%>
-	<%= label_tag :resolution_note %>
-	<%= text_area_tag :resolution_note, class: 'form-control' %>
-<!-- 	<%= select_tag :status, Case.statuses.keys, class: 'btn btn-primary' %>  --> <!-- .statuses.keys retrieves the enum keys for status -->
-	<br>
+<%= form_for(@case, method: :put) do |f|%>
+	<%= f.label :description %>
+	<%= f.text_area :description, class: 'form-control' %>
+	<%= f.select(:status, Case.statuses.keys, {selected: 'open'}, {class: 'btn dropdown-toggle'}) %> <!-- .statuses.keys retrieves the enum keys for status -->
+	<p></p>
 	<%= submit_tag "Reopen Case", class: 'btn btn-primary'  %>
 
 <% end %>
 
-<%= button_tag "Close", controller: 'cases', action: 'close', remote: true %>
+<p></p>
+
+<%= button_to "Close", controller: 'cases', action: 'close', remote: true, method: :put, id:@case.id , class: 'btn btn-primary'%>
 </div>
 <br/>

@@ -2,11 +2,11 @@
 <div id = "close_case" style="display:none;">
 <!-- the form_for doesn't specify the action to be used, and doesn't need one, as it uses the update action
  since we specified the method as put, and tied it to the @case object -->
-<%= form_for(@case, method: :put, url: resolve_path(@case), id: @case.id) do |f|%>
+<%= form_for(@case, method: :put) do |f|%>
 	<%= f.label :resolution_note %>
 	<%= f.text_area :resolution_note, {class: 'form-control'} %>
-<!-- 	<%= f.select :status, Case.statuses.keys, class: 'btn btn-primary' %>  --> <!-- .statuses.keys retrieves the enum keys for status -->
-	<br>
+	<%= f.select(:status, Case.statuses.keys, {selected: 'fixed'}, {class: 'btn dropdown-toggle'}) %>  <!-- .statuses.keys retrieves the enum keys for status -->
+	<p></p>
 	<%= f.submit "Resolve", class: 'btn btn-primary'  %>
 
 <% end %>

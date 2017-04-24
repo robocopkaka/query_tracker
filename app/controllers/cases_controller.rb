@@ -2,7 +2,7 @@ require 'will_paginate/array'
 class CasesController < ApplicationController
   before_action :authenticate_user!
   #before_action :admin_only, only: [:assign]
-  before_action :find_case, only: [:edit, :update, :assign, :show, :close, :reopen, :resolve] #change to an except
+  before_action :find_case, only: [:edit, :update, :assign, :show, :reopen, :resolve] #change to an except
 
   # retrieve all cases from the database
   def index
@@ -46,7 +46,10 @@ class CasesController < ApplicationController
 
   def update
 			if @case.update_attributes(case_params)
-				redirect_to @case
+        respond_to do |format|
+          format.html{redirect_to @case}
+          format.json{render :show, status: :created, location: @case}
+        end
 			else
 				render 'edit'
 			end
@@ -84,8 +87,8 @@ class CasesController < ApplicationController
 
   # closes the case
   def close
+    @case = Case.find(params[:id])
     @case.closed!
-    save
     respond_to do |format|
       #format.js{}
       format.html {redirect_to @case}
@@ -93,22 +96,6 @@ class CasesController < ApplicationController
     # add a mailer function
   end
 
-  #reopens the case
-  def reopen
-    @case.open!
-    save
-    redirect_to @case
-    # add a mailer function
-  end
-
-  def resolve
-    if @case.update_attributes(status: 'fixed', resolution_note: params[:resolution_note])
-      redirect_to @case
-    else
-      redirect_to :back #display the previous page
-    end
-    # add a mailer function
-  end
 
   private
   def case_params
