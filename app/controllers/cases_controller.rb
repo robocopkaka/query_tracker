@@ -29,8 +29,10 @@ class CasesController < ApplicationController
 
   def create
   	@case = current_user.cases.new(case_params)
+    @admin = User.where("is_admin=?",true).first
   	respond_to do |format|
 		if @case.save
+      Notification.create(actor: current_user, recipient: @admin, action: "Logged", notifiable: @case)
       CaseMailer.logged_case(@case).deliver_now
 			format.html{redirect_to @case}
 			format.json{render :show, status: :created, location: @case}
@@ -46,6 +48,8 @@ class CasesController < ApplicationController
 
   def update
 			if @case.update_attributes(case_params)
+        CaseMailer.reopen(@case).deliver_now if @case.open?
+        CaseMailer.resolved(@case).deliver_now if @case.fixed?
         respond_to do |format|
           format.html{redirect_to @case}
           format.json{render :show, status: :created, location: @case}
@@ -89,6 +93,7 @@ class CasesController < ApplicationController
   def close
     @case = Case.find(params[:id])
     @case.closed!
+    CaseMailer.closed_case(@case).deliver_now
     respond_to do |format|
       #format.js{}
       format.html {redirect_to @case}

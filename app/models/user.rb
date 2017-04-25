@@ -6,6 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 	has_many :cases
+  has_many :notifications, foreign_key: :recipient_id
 
   enum role: {
   	regular: 'regular',

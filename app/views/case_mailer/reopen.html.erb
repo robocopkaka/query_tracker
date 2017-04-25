@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Case Number <%= @complaint.id %> was just reopened</h1>
+    <p>The case was created by <%= @complaint.user.name %></p>
+
+    <p>You can view the case by clicking <%= link_to "here", case_url(@complaint) %></p>
+  </body>
+</html>
