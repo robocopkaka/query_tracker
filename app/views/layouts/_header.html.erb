@@ -40,6 +40,14 @@
         <% if !user_signed_in? %>
           <li><%= link_to "Login", new_user_session_path %></li>
         <% else %>
+          <li class="nav-item btn-group" data-behavior = "notifications">
+            <a class="dropdown-toggle nav-link" data-behavior='notification-link' type="button" id="dropdownmenu1" data-toggle="dropdown" aria-haspopup = "true" aria-expanded="fa">
+              <%= fa_icon "bell" %> <span data-behavior= "unread-count"></span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby = "dropdownmenu1" data-behavior="notification-items">
+              
+            </div>
+          </li>
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>

@@ -25,6 +25,11 @@ Rails.application.routes.draw do
   resources :cases
   resources :users
   resources :categories
-  resources :notifications
+
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

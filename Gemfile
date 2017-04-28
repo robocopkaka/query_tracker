@@ -36,6 +36,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 #bootstrap gem
 gem 'bootstrap-sass', '~> 3.3.6'
+
+#font-awesome gem
+gem "font-awesome-rails"
 #faker gem for generating dummy data
 gem 'faker'
 # pagination gems

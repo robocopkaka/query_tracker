@@ -1,5 +1,6 @@
 require 'will_paginate/array'
 class CasesController < ApplicationController
+  include CasesHelper
   before_action :authenticate_user!
   #before_action :admin_only, only: [:assign]
   before_action :find_case, only: [:edit, :update, :assign, :show, :reopen, :resolve] #change to an except
@@ -48,8 +49,7 @@ class CasesController < ApplicationController
 
   def update
 			if @case.update_attributes(case_params)
-        CaseMailer.reopen(@case).deliver_now if @case.open?
-        CaseMailer.resolved(@case).deliver_now if @case.fixed?
+        notifications_and_mailer(current_user) #helper method in cases_helper.rb for creating notifications and sending mails
         respond_to do |format|
           format.html{redirect_to @case}
           format.json{render :show, status: :created, location: @case}
@@ -75,7 +75,7 @@ class CasesController < ApplicationController
   def assign
     # raise params.inspect
     @case.update_attributes(assigned_to: params[:support_id])
-
+    Notification.create(actor: current_user, recipient: User.find(params[:support_id]), action: "Assigned", notifiable: @case)
     respond_to do |format|
       #format.js{}
       format.html {redirect_to @case}
