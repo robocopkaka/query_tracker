@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get 'users/edit'
 
+  get 'resolved_cases' => 'cases#resolved_cases'
+
   root 'users#index'
 
   post 'close' => 'cases#close'

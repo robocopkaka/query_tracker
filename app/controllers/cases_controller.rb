@@ -101,6 +101,10 @@ class CasesController < ApplicationController
     # add a mailer function
   end
 
+  def resolved_cases
+    @cases = current_user.cases.where(status: 'fixed') if current_user.regular?
+  end
+
 
   private
   def case_params
