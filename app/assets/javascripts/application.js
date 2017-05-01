@@ -13,8 +13,13 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require material
 //= require turbolinks
 //= require_tree .
+
+document.addEventListener('turbolinks:load', function() {
+  componentHandler.upgradeDom();
+});
 
 function showhide()
  {
@@ -48,3 +53,13 @@ else {
     div.style.display = "block";
 }
  }
+
+ function hasClass( target, className ) {
+    return new RegExp('(\\s|^)' + className + '(\\s|$)').test(target.className);
+}
+document.addEventListener('mdl-componentupgraded', function(e) {
+        if (hasClass(e.target, 'mdl-layout')) {            
+            if (window.location.hash)
+                window.location = window.location.hash;
+        }
+    });

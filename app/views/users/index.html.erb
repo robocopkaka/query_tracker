@@ -1,7 +1,24 @@
-<h1 style="text-align: center;">Welcome to Kachi's Query Tracker</h1>
+<!-- <h1 style="text-align: center;">Welcome to Kachi's Query Tracker</h1>
 <% if !user_signed_in? %>
 	<p style="text-align: center; font-size: 20px">You can create cases, see who they're assigned to, and get a mail when it's fixed</p>
 <% else %>
 	<p>Hi, <%= current_user.email %></p>
 	<p><%= link_to "Log out here", destroy_user_session_path, method: :delete %></p>
+<% end %> -->
+<% if !user_signed_in? %>
+	<div class="mdl-grid site-max-width">
+	    <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp welcome-card portfolio-card">
+	        <div class="mdl-card__title">
+	          <h2 class="mdl-card__title-text">Welcome</h2>
+	        </div>
+	        <div class="mdl-card__supporting-text">
+	          Hi there. QueryTracker lets you log cases, and keep track of their progress. You also get mails and notifications when they're done. So, have fun logging.
+	        </div>
+	        <div class="mdl-card__actions mdl-card--border">
+	        <%= link_to "Start logging cases", new_case_path, class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" %>
+	        </div>
+	    </div>
+	</div>
 <% end %>
+
+<%= render 'cases/case' %>

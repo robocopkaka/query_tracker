@@ -4,7 +4,9 @@ class UsersController < ApplicationController
 	before_action :find_user, only: [:edit, :update, :show]
 
   def index
-  	
+  	if user_signed_in?
+      @cases = current_user.cases.page(params[:page]).per_page(10)
+    end
   end
 
   def all

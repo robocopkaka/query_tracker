@@ -1,4 +1,4 @@
-<h1>Case <%= @case.id%></h1>
+<!-- <h1>Case <%= @case.id%></h1>
 
 <p> Description: <%= @case.description %></p>
 <p>Created by: <%= @case.user.name %></p>
@@ -6,14 +6,70 @@
 <p>Assigned to: <%= User.find(@case.assigned_to).name %></p>
 <p>Status: <%= @case.status %></p>
 <!-- Since I generally assume that an admin is a support staff, duplicating the support_show partial is
- unnecessary. Both admin and any other support staff can close cases -->
-<% if current_user.support? %>
-	<%= render 'cases/support_show' %>
-<% end %>
+ unnecessary. Both admin and any other support staff can close cases --> -->
 
-<% if current_user.id == @case.user_id && (@case.fixed? || @case.closed?) %>
-	<%= render 'cases/reopen' %>
-<% end %>
+
+
+<section class="section--center mdl-grid site-max-width">
+		  <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--8-col-phone  mdl-shadow--4dp">
+		    <div class="mdl-card__title">
+		    	<h2> <%= link_to "Case #{@case.id}", case_path(@case), class: "mdl-card__title-text" %> </h2>
+		       <!--  <h2 class="mdl-card__title-text">Introduction</h2> -->
+		    </div>
+		    <div class="mdl-card__supporting-text">
+				<ul class="demo-list-three mdl-list">
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="material-icons mdl-list__item-icon">person</i>
+				      <span>Logged by: </span>
+				      <span class="mdl-list__item-text-body">
+				        <%= @case.user.name %>
+				      </span>
+				    </span>
+				  </li>
+
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="material-icons mdl-list__item-icon">description</i>
+				      <span>Description: </span>
+				      <span class="mdl-list__item-text-body">
+				        <%= @case.description %>
+				      </span>
+				    </span>
+				  </li>
+
+				  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="material-icons mdl-list__item-icon">description</i>
+				      <span>Category: </span>
+				      <span class="mdl-list__item-text-body">
+				        <%= @case.category.name %>
+				      </span>
+				    </span>
+				  </li>
+				 <!--  <li class="mdl-list__item mdl-list__item--three-line">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="material-icons mdl-list__item-icon">person</i>
+				      <span>Assigned to: </span>
+				      <span class="mdl-list__item-text-body">
+				        <%= User.find(@case.assigned_to).name %>
+				      </span>
+				    </span>
+				  </li> -->
+				</ul>
+		    </div>
+		    <div class="mdl-card__actions  mdl-card--border">
+		      <!-- <a href="#" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">Watch Intro</a> -->
+		      <% if current_user.support? %>
+				<%= render 'cases/support_show' %>
+			  <% end %>
+
+			  <% if current_user.id == @case.user_id && (@case.fixed? || @case.closed?) %>
+				<%= render 'cases/reopen' %>
+			  <% end %>
+		    </div>
+		  </div>
+		</section>
 
 <script type="text/javascript">
 function myFunction() {

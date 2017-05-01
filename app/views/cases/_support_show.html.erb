@@ -1,13 +1,15 @@
-<button id="button" onclick="showhide()" class="btn btn-primary">Resolve Case</button>
+<button id="button" onclick="showhide()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button">Resolve Case</button>
 <div id = "close_case" style="display:none;">
 <!-- the form_for doesn't specify the action to be used, and doesn't need one, as it uses the update action
  since we specified the method as put, and tied it to the @case object -->
 <%= form_for(@case, method: :put) do |f|%>
-	<%= f.label :resolution_note %>
-	<%= f.text_area :resolution_note, {class: 'form-control'} %>
+	<div class="mdl-textfield mdl-js-textfield">
+		<%= f.label :resolution_note %>
+		<%= f.text_area :resolution_note, {class: 'mdl-textfield__label'} %>
+	</div>
 	<%= f.select(:status, Case.statuses.keys, {selected: 'fixed'}, {class: 'btn dropdown-toggle'}) %>  <!-- .statuses.keys retrieves the enum keys for status -->
 	<p></p>
-	<%= f.submit "Resolve", class: 'btn btn-primary'  %>
+	<%= f.submit "Resolve", class: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button'  %>
 
 <% end %>
 </div>
