@@ -1,22 +1,16 @@
+<nav class="white button-collapse" role="navigation">
+  <div class="nav-wrapper container">
+    <ul class="right hide-on-med-and-down">
+     <li> <%= link_to "Home", root_url %> </li>
+     <li> <%= link_to "Cases", cases_path %> </li>
+     <li> <%= link_to "Profile", user_path(current_user) %> </li>
+    </ul>
 
-<header class="mdl-layout__header mdl-layout__header--waterfall site-header">
-  <div class="mdl-layout__header-row site-logo-row"><span class="mdl-layout__title">
-      <div class="site-logo"></div><span class="site-description">Query Tracker</span></span></div>
-  <div class="mdl-layout__header-row site-navigation-row mdl-layout--large-screen-only">
-    <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-        <%= link_to "Home", root_url, class: "mdl-navigation__link" %>
-        <%= link_to "Cases", cases_path, class: "mdl-navigation__link" %>
-        <%= link_to "Profile", user_path(current_user), class: "mdl-navigation__link" %>
-        <!-- add a notifications item to the navbar -->
-    </nav>
+    <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      <!-- add a notifications item to the navbar -->
   </div>
-</header>
+</nav>
 
-<div class="mdl-layout__drawer mdl-layout--small-screen-only">
-  <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-    <%= link_to "Home", root_url, class: "mdl-navigation__link" %>
-    <%= link_to "Cases", cases_path, class: "mdl-navigation__link" %>
-    <%= link_to "Profile", user_path(current_user), class: "mdl-navigation__link" %>
-    <!-- add a notifications item to the navbar -->
-  </nav>
-</div>

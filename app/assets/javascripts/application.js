@@ -10,11 +10,13 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require webcomponentsjs/webcomponents-lite
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require material
 //= require turbolinks
+//= require materialize-sprockets
 //= require_tree .
 
 document.addEventListener('turbolinks:load', function() {

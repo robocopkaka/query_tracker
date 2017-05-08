@@ -12,27 +12,11 @@
   </head>
 
   <body id = "top">
-	  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header"><a href="contact.html" id="contact-button" class="mdl-button mdl-button--fab mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast mdl-shadow--4dp"><i class="material-icons">mail</i></a>
       <% if user_signed_in? && current_user.is_admin? %>
         <%= render 'layouts/admin_header' %>
       <% else %>
         <%= render 'layouts/header' %>
       <% end %>
-      <main class="mdl-layout__content">
-        <div class="site-content">
-          <div class="container"> 
         	    <%= yield %>
-          </div>
-        </div>
-        <footer class="mdl-mini-footer">
-          <div class="footer-container">
-            <div class="mdl-logo">&copy; Unitiled. Design: <a href="https://templateflip.com/" target="_blank">TemplateFlip</a></div>
-            <ul class="mdl-mini-footer__link-list">
-              <li><a href="#">Privacy & Terms</a></li>
-            </ul>
-          </div>
-        </footer>
-      </main>
-	  </div>
   </body>
 </html>

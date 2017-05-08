@@ -37,6 +37,11 @@ gem 'devise'
 #bootstrap gem
 gem 'bootstrap-sass', '~> 3.3.6'
 
+# polymer-rails gem
+gem 'polymer-rails'
+
+gem 'materialize-sass'
+
 # gem 'material_design_lite-rails', '~> 1.3'
 
 #font-awesome gem

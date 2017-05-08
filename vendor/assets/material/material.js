@@ -1,1 +1,1 @@
-//= require material/scripts/main.js
+//= require material/scripts/init.js
